@@ -1,4 +1,4 @@
-package com.habitmind;
+package dev.kuronosu.habitmind;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

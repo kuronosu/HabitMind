@@ -1,4 +1,4 @@
-package com.habitmind;
+package dev.kuronosu.habitmind;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

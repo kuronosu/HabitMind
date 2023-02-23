@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.habitmind"
+    namespace "dev.kuronosu.habitmind"
     defaultConfig {
-        applicationId "com.habitmind"
+        applicationId "dev.kuronosu.habitmind"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
