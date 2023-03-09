@@ -1,14 +1,17 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import MainStack from './navigation';
+import {withExpoSnack} from 'nativewind';
 
-export default function App() {
+function App() {
   return (
     <SafeAreaView style={styles.container}>
       <MainStack />
     </SafeAreaView>
   );
 }
+
+export default withExpoSnack(App);
 
 const styles = StyleSheet.create({
   container: {
