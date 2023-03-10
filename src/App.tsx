@@ -1,7 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import MainStack from './navigation';
-import {withExpoSnack} from 'nativewind';
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
   );
 }
 
-export default withExpoSnack(App);
+export default App;
 
 const styles = StyleSheet.create({
   container: {
