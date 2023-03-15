@@ -2,7 +2,6 @@ import React from 'react';
 import {Button, Image, Text, View} from 'react-native';
 import {type NoAuthScreenProps} from '..';
 import { StyledComponent } from 'nativewind';
-import { Pressable } from 'react-native/Libraries/Components/Pressable/Pressable';
 
 const ejercicio = require("./assets/exercise.png");
 const comida = require("./assets/comida.png");
@@ -43,7 +42,7 @@ export default function IntroScreen({navigation}: NoAuthScreenProps<'Intro'>) {
         <StyledComponent component={View} className='flex-row justify-start pl-6 pr-9 h-28 bg-orange-500 rounded-tl-3xl rounded-br-3xl'>
             <StyledComponent component={Image} source={batido} className='h-24 w-24 self-center'></StyledComponent>
           
-          <StyledComponent component={Text} className='text-black self-center text-left w-40 pl-8'>PREPARA UN BATIDO NUTRITIVO</StyledComponent>
+          <StyledComponent component={Text} className='text-black self-center text-left w-40 pl-8 leading-5'>PREPARA UN BATIDO NUTRITIVO</StyledComponent>
 
         </StyledComponent>
 
@@ -51,7 +50,7 @@ export default function IntroScreen({navigation}: NoAuthScreenProps<'Intro'>) {
         <StyledComponent component={View} className='flex-row justify-start pl-6 pr-9 h-28 bg-pink-500 rounded-tl-3xl rounded-br-3xl'>
             <StyledComponent component={Image} source={musica} className='h-24 w-24 self-center '></StyledComponent>
           
-          <StyledComponent component={Text} className='text-black w-40 text-left self-center pl-8'>PON MUSICA ALEGRE</StyledComponent>
+          <StyledComponent component={Text} className='text-black w-40 text-left self-center pl-8 leading-5'>PON MUSICA ALEGRE</StyledComponent>
 
         </StyledComponent>
 

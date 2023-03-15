@@ -2,7 +2,7 @@ import auth from '@react-native-firebase/auth';
 import React from 'react';
 import {Button} from 'react-native';
 import {logoutGoogle} from '../../firebase/auth/google';
-import {StyledText, StyledView} from '../../styled';
+import {StyledText, StyledView, StyledPressable} from '../../styled';
 
 function HomeScreen() {
   const name = auth().currentUser?.displayName;
@@ -11,9 +11,11 @@ function HomeScreen() {
       <StyledText className="text-center text-lg text-teal-900">
         Hola
       </StyledText>
+      
       <StyledText className="text-center text-lg text-teal-900">
         {name}
       </StyledText>
+
       <Button title="Logout" onPress={() => logoutGoogle()} />
     </StyledView>
   );
