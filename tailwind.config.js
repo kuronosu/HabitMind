@@ -2,8 +2,7 @@
 module.exports = {
   content: ['./App.{js,jsx,ts,tsx}', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {
-    },
+    extend: {},
     colors: {
       // tema claro
       'beige-suave': '#f8ede3',
@@ -12,7 +11,7 @@ module.exports = {
       'pardo-oscuro': '#85586f',
       'melocoton-claro': '#dba39a',
       'giris-tormenta': '#65647c',
-      'lila': '#debace',
+      lila: '#debace',
       'marron-arcilla': '#8b7e74',
       'azul-uva': '#7f669d',
 
@@ -26,7 +25,6 @@ module.exports = {
       'lila-electrico': '#e384ff',
       'rosa-palido': '#ffa3fd',
       'azul-turquesa': '#3795bd',
-
     },
   },
   plugins: [],

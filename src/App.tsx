@@ -1,21 +1,14 @@
+import {StyledComponent} from 'nativewind';
 import React from 'react';
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import MainStack from './navigation';
 
 function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <StyledComponent component={SafeAreaView} tw="flex-1">
       <MainStack />
-    </SafeAreaView>
+    </StyledComponent>
   );
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 0,
-    padding: 0,
-  },
-});
