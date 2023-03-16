@@ -1,13 +1,15 @@
 import auth from '@react-native-firebase/auth';
 import React from 'react';
-// import {Button} from 'react-native';
 import {logoutGoogle} from '../../firebase/auth/google';
-import {StyledPressable, StyledText, StyledView} from '../../styled';
+import {StyledPressable, StyledText, StyledView, StyledSwitch} from '../../styled';
+import { useColorScheme } from 'nativewind';
 
 function HomeScreen() {
   const name = auth().currentUser?.displayName;
+  const { colorScheme, toggleColorScheme } = useColorScheme();
   return (
-    <StyledView className="flex-1 justify-center items-center">
+    <StyledView className="flex-1 justify-center items-center bg-beige-lino dark:bg-slate-400">
+      <StyledSwitch value={colorScheme === 'dark'} onChange={toggleColorScheme} className='h-14 '></StyledSwitch>
       <StyledText className="text-center text-lg text-teal-900">
         Hola
       </StyledText>

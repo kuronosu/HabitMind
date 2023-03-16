@@ -1,7 +1,6 @@
 import React from 'react';
-import {Button, Image, Text, View} from 'react-native';
 import {type NoAuthScreenProps} from '..';
-import {StyledComponent} from 'nativewind';
+import {StyledPressable, StyledText, StyledView, StyledImage} from '../styled';
 
 const ejercicio = require('./assets/exercise.png');
 const comida = require('./assets/comida.png');
@@ -10,100 +9,87 @@ const musica = require('./assets/notas-musicales.png');
 
 export default function IntroScreen({navigation}: NoAuthScreenProps<'Intro'>) {
   return (
-    <StyledComponent
-      component={View}
-      className="flex-1 flex-col bg-amber-100 justify-between">
+    <StyledView className="flex-1 flex-col bg-orange-200 justify-between">
       {/* Header */}
-      <StyledComponent component={View} tw="mt-8">
-        <StyledComponent
-          component={Text}
-          tw="text-4xl text-black font-bold text-center">
+      <StyledView className="mt-4">
+        <StyledText className="text-4xl text-negro-azabache font-bold text-center">
           CREA TU RUTINA MATINAL
-        </StyledComponent>
-      </StyledComponent>
+        </StyledText>
+      </StyledView>
 
       {/* Content */}
-      <StyledComponent
-        component={View}
-        className="flex-1 justify-evenly ml-6 mr-6">
+      <StyledView className="flex-1 justify-around mt-2 ml-6 mr-6 -mb-2">
         {/* Division 1 */}
-        <StyledComponent
-          component={View}
-          className="flex-row justify-start pl-6 pr-9 h-28 bg-blue-500 rounded-tl-3xl rounded-br-3xl">
-          <StyledComponent
-            component={Image}
-            source={ejercicio}
-            className="h-24 w-24 self-center p-10"
-          />
+        <StyledView 
+          className="flex-row justify-start pl-6 pr-9 h-28 bg-blue-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          
+          <StyledImage source={ejercicio} className="h-24 w-24 self-center p-10"/>
 
-          <StyledComponent
-            component={Text}
+          <StyledText
             className="text-black w-40 text-left self-center pl-8">
             HAZ EJERCICIO
-          </StyledComponent>
-        </StyledComponent>
+          </StyledText>
+
+        </StyledView>
 
         {/* Division 2 */}
-        <StyledComponent
-          component={View}
-          className="flex-row justify-start pl-6 pr-9 h-28 bg-green-500 rounded-tl-3xl rounded-br-3xl">
-          <StyledComponent
-            component={Image}
+        <StyledView
+          className="flex-row justify-start pl-6 pr-9 h-28 bg-green-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          <StyledImage
             source={comida}
             className="h-24 w-24 self-center"
           />
 
-          <StyledComponent
-            component={Text}
-            className="text-black w-40 text-left self-center pl-8">
+          <StyledText
+            className="text-negro-azabache w-40 text-left self-center pl-8">
             COCINA ALGO RICO
-          </StyledComponent>
-        </StyledComponent>
+          </StyledText>
+        </StyledView>
 
         {/* Division 3 */}
-        <StyledComponent
-          component={View}
-          className="flex-row justify-start pl-6 pr-9 h-28 bg-orange-500 rounded-tl-3xl rounded-br-3xl">
-          <StyledComponent
-            component={Image}
+        <StyledView
+          className="flex-row justify-start pl-6 pr-9 h-28 bg-orange-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          <StyledImage
             source={batido}
             className="h-24 w-24 self-center"
           />
 
-          <StyledComponent
-            component={Text}
-            className="text-black self-center text-left w-40 pl-8 leading-5">
+          <StyledText
+            className="text-negro-azabache self-center text-left w-40 pl-8 leading-5">
             PREPARA UN BATIDO NUTRITIVO
-          </StyledComponent>
-        </StyledComponent>
+          </StyledText>
+        </StyledView>
 
         {/* Division 4 */}
-        <StyledComponent
-          component={View}
-          className="flex-row justify-start pl-6 pr-9 h-28 bg- rounded-tl-3xl rounded-br-3xl">
-          <StyledComponent
-            component={Image}
+        <StyledView
+          className="flex-row justify-start pl-6 pr-9 h-28 bg-pink-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          <StyledImage
             source={musica}
             className="h-24 w-24 self-center "
           />
 
-          <StyledComponent
-            component={Text}
-            className="text-black w-40 text-left self-center pl-8 leading-5">
+          <StyledText
+            className="text-negro-azabache w-40 text-left self-center pl-8 leading-5">
             PON MUSICA ALEGRE
-          </StyledComponent>
-        </StyledComponent>
-      </StyledComponent>
+          </StyledText>
+        </StyledView>
+      </StyledView>
 
       {/* Footer */}
-      <StyledComponent component={View} className="flex">
-        <Button
-          title="Siguiente"
+      <StyledView className="flex">
+
+        <StyledPressable
+          android_ripple={{color: '#00000000'}}
           onPress={() => {
             navigation.navigate('Login');
           }}
-        />
-      </StyledComponent>
-    </StyledComponent>
+          className="bg-purple-400 active:bg-purple-300 p-3 m-6 w-[80%] rounded-2xl items-center self-center shadow-lg shadow-gray-700">
+          <StyledText className="font-semibold text-lg text-gray-200">
+            SIGUIENTE
+          </StyledText>
+        </StyledPressable>
+
+      </StyledView>
+    </StyledView>
   );
 }
