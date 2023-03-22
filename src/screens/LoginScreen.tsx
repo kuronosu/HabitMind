@@ -35,8 +35,8 @@ export default function LoginScreen() {
                 console.log(error);
               })
           }
-          className="flex flex-row justify-evenly bg-gris-tormenta p-3 m-6 w-[98%] rounded-2xl items-center self-center shadow-lg shadow-gray-700 active:bg-slate-400">
-          <StyledImage source={google} className="w-10 h-10" />
+          className="flex flex-row justify-center bg-gris-tormenta p-3 m-6 w-full rounded-2xl items-center self-center shadow-lg shadow-gray-700 active:bg-slate-400">
+          <StyledImage source={google} className="w-10 h-10 mr-3" />
           <StyledText className="font-semibold text-lg text-gray-200">
             INGRESAR
           </StyledText>

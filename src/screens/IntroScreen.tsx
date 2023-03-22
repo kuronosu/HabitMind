@@ -12,7 +12,7 @@ export default function IntroScreen({navigation}: NoAuthScreenProps<'Intro'>) {
     <StyledView className="flex-1 flex-col bg-orange-200 justify-between">
       {/* Header */}
       <StyledView className="mt-4">
-        <StyledText className="text-4xl text-negro-azabache font-bold text-center">
+        <StyledText className="text-4xl text-negro-azabache font-bold text-center mx-4">
           CREA TU RUTINA MATINAL
         </StyledText>
       </StyledView>
