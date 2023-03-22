@@ -9,9 +9,8 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import React, {useCallback} from 'react';
-import {NoAuthRootStackParamList} from '..';
-import Article from '../screens/Article';
-import Feed from '../screens/Feed';
+import {NoAuthRootStackParamList, RootParamList} from '..';
+import CreateTaskScreen from '../screens/CreateTask';
 import HomeScreen from '../screens/home';
 import IntroScreen from '../screens/IntroScreen';
 import LoadingScreen from '../screens/LoadingScreen';
@@ -20,7 +19,7 @@ import DrawerContent from './DrawerContent';
 
 const Stack = createNativeStackNavigator<NoAuthRootStackParamList>();
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<RootParamList>();
 
 const introOptions: NativeStackNavigationOptions = {
   animation: 'slide_from_right',
@@ -85,14 +84,18 @@ const MainNavigation = () => {
       <Drawer.Navigator drawerContent={drawerContent}>
         <Drawer.Screen
           name="Home"
+          options={{
+            title: 'Inicio',
+          }}
           component={HomeScreen}
-          // options={{
-          //   headerLeft: () => null,
-          //   // headerBackButtonMenuEnabled: false,
-          // }}
         />
-        <Drawer.Screen name="Feed" component={Feed} />
-        <Drawer.Screen name="Article" component={Article} />
+        <Drawer.Screen
+          name="CreateTask"
+          options={{
+            title: 'Crear tarea',
+          }}
+          component={CreateTaskScreen}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

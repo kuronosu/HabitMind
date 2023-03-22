@@ -9,6 +9,13 @@ export type NoAuthRootStackParamList = {
   Login: undefined;
 };
 
+export type RootParamList = {
+  Home: undefined;
+  CreateTask: undefined;
+};
+
+export type RootNavigationProp = NavigationProp<RootParamList>;
+
 // export type AuthRootStackParamList = {
 //   // todo - add more screens here
 //   Home: undefined;
@@ -26,3 +33,12 @@ export type NoAuthScreenNavigationProp<
 
 export type NoAuthScreenProps<K extends keyof NoAuthRootStackParamList> =
   NativeStackScreenProps<NoAuthRootStackParamList, K>;
+
+export type Task = {
+  title: string;
+  description: string;
+  date: Date;
+  completed: boolean;
+  group: string;
+  user: string;
+};

@@ -1,36 +1,17 @@
 import auth from '@react-native-firebase/auth';
 // import {useColorScheme} from 'nativewind';
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import {FAB, Text} from 'react-native-paper';
+import {RootNavigationProp, Task} from '../..';
 import {tasksCollection} from '../../firebase/firestore';
-// import {logoutGoogle} from '../../firebase/auth/google';
-import {
-  // StyledImage,
-  // StyledPressable,
-  // StyledSwitch,
-  // StyledText,
-  StyledView,
-} from '../../styled';
 
-// const menu = require('../assets/menu.png');
-// const reloj = require('../assets/reloj.png');
-// const universidad = require('../assets/educacion.png');
-// const trabajo = require('../assets/maletin.png');
-// const personal = require('../assets/crecimiento.png');
-
-type Task = {
-  title: string;
-  description: string;
-  date: Date;
-  completed: boolean;
-  group: string;
-  user: string;
-};
+import {StyledView} from '../../styled';
 
 function HomeScreen() {
   const user = auth().currentUser!;
-  // const {colorScheme, toggleColorScheme} = useColorScheme();
+  const {navigate} = useNavigation<RootNavigationProp>();
   const [tasks, setTasks] = React.useState<Task[]>([]);
 
   // useEffect(() => {
@@ -45,9 +26,9 @@ function HomeScreen() {
   // }, [user.uid]);
 
   useEffect(() => {
-    const subscriber = tasksCollection
-      .where('user', '==', user.uid)
+    const unsubscribe = tasksCollection
       .orderBy('date', 'desc')
+      .where('user', '==', user.uid)
       .onSnapshot(documentSnapshot => {
         if (documentSnapshot) {
           setTasks(
@@ -59,8 +40,8 @@ function HomeScreen() {
             }),
           );
         }
-      });
-    return () => subscriber();
+      }, console.error);
+    return () => unsubscribe();
   }, [user.uid]);
 
   return (
@@ -76,7 +57,7 @@ function HomeScreen() {
       <FAB
         icon="plus"
         style={styles.fab}
-        onPress={() => console.log('Pressed')}
+        onPress={() => navigate('CreateTask')}
       />
       {/*
        <StyledView className="flex-row self-start w-[100%] justify-between">
@@ -104,14 +85,10 @@ function HomeScreen() {
           </StyledText>
         </StyledPressable>
       </StyledView>
-
-      
       <StyledView className="flex-col gap-y-4 w-[100%] justify-evenly">
         <StyledText className="text-center text-4xl font-bold text-gray-600 dark:text-teal-300">
           Hoy
         </StyledText>
-
-        
         <StyledPressable
           android_ripple={{color: '#fff'}}
           onPress={logoutGoogle}
@@ -124,13 +101,11 @@ function HomeScreen() {
             <StyledText className="font-bold text-center text-[#fff]">
               Tarea 1
             </StyledText>
-
             <StyledText className="text-center text-[#fff]">
               8am - 9pm
             </StyledText>
           </StyledView>
         </StyledPressable>
-
         <StyledPressable
           android_ripple={{color: '#fff'}}
           onPress={logoutGoogle}
@@ -143,13 +118,11 @@ function HomeScreen() {
             <StyledText className="font-bold text-center text-[#fff]">
               Tarea 1
             </StyledText>
-
             <StyledText className="text-center text-[#fff]">
               8am - 9pm
             </StyledText>
           </StyledView>
         </StyledPressable>
-
         <StyledPressable
           android_ripple={{color: '#fff'}}
           onPress={logoutGoogle}
@@ -162,13 +135,11 @@ function HomeScreen() {
             <StyledText className="font-bold text-center text-[#fff]">
               Tarea 1
             </StyledText>
-
             <StyledText className="text-center text-[#fff]">
               8am - 9pm
             </StyledText>
           </StyledView>
         </StyledPressable>
-
         <StyledPressable
           android_ripple={{color: '#fff'}}
           onPress={logoutGoogle}
@@ -181,19 +152,15 @@ function HomeScreen() {
             <StyledText className="font-bold text-center text-[#fff]">
               Tarea 1
             </StyledText>
-
             <StyledText className="text-center text-[#fff]">
               8am - 9pm
             </StyledText>
           </StyledView>
         </StyledPressable>
-
         <StyledText className="text-center text-lg text-gray-600 dark:text-teal-300">
           {name}
         </StyledText>
       </StyledView>
-
-
       <StyledView>
         <StyledPressable
           android_ripple={{color: '#fff'}}

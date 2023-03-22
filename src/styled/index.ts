@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Caption, Drawer, Title} from 'react-native-paper';
+import {Caption, Drawer, Title, TextInput} from 'react-native-paper';
+import DropDown from 'react-native-paper-dropdown';
 
 export const StyledText = styled(Text);
 export const StyledView = styled(View);
@@ -18,3 +19,5 @@ export const StyledSwitch = styled(Switch);
 export const StyledTitle = styled(Title);
 export const StyledCaption = styled(Caption);
 export const StyledDrawerSection = styled(Drawer.Section);
+export const StyledTextInput = styled(TextInput);
+export const StyledDropDown = styled(DropDown);
