@@ -1,31 +1,85 @@
 import auth from '@react-native-firebase/auth';
-import {useColorScheme} from 'nativewind';
-import React from 'react';
-import {StyleSheet} from 'react-native';
-import {FAB} from 'react-native-paper';
-import {logoutGoogle} from '../../firebase/auth/google';
+// import {useColorScheme} from 'nativewind';
+import React, {useEffect} from 'react';
+import {StyleSheet, FlatList} from 'react-native';
+import {FAB, Text} from 'react-native-paper';
+import {tasksCollection} from '../../firebase/firestore';
+// import {logoutGoogle} from '../../firebase/auth/google';
 import {
-  StyledImage,
-  StyledPressable,
-  StyledSwitch,
-  StyledText,
+  // StyledImage,
+  // StyledPressable,
+  // StyledSwitch,
+  // StyledText,
   StyledView,
 } from '../../styled';
 
-const menu = require('../assets/menu.png');
-const reloj = require('../assets/reloj.png');
+// const menu = require('../assets/menu.png');
+// const reloj = require('../assets/reloj.png');
 // const universidad = require('../assets/educacion.png');
 // const trabajo = require('../assets/maletin.png');
 // const personal = require('../assets/crecimiento.png');
 
+type Task = {
+  title: string;
+  description: string;
+  date: Date;
+  completed: boolean;
+  group: string;
+  user: string;
+};
+
 function HomeScreen() {
-  const name = auth().currentUser?.displayName;
-  const {colorScheme, toggleColorScheme} = useColorScheme();
+  const user = auth().currentUser!;
+  // const {colorScheme, toggleColorScheme} = useColorScheme();
+  const [tasks, setTasks] = React.useState<Task[]>([]);
+
+  // useEffect(() => {
+  //   tasksCollection.add({
+  //     title: 'Tarea 3',
+  //     description: 'Tarea 3',
+  //     date: new Date(),
+  //     completed: false,
+  //     group: 'work',
+  //     user: user.uid,
+  //   });
+  // }, [user.uid]);
+
+  useEffect(() => {
+    const subscriber = tasksCollection
+      .where('user', '==', user.uid)
+      .orderBy('date', 'desc')
+      .onSnapshot(documentSnapshot => {
+        if (documentSnapshot) {
+          setTasks(
+            documentSnapshot.docs.map(doc => {
+              const data = doc.data();
+              const date = new Date(data.date.seconds * 1000);
+              date.setMilliseconds(data.date.nanoseconds / 1000000);
+              return {...data, date} as Task;
+            }),
+          );
+        }
+      });
+    return () => subscriber();
+  }, [user.uid]);
+
   return (
-    // container
-    <StyledView className="flex-col flex-1 p-3 items-center bg-beige-lino dark:bg-slate-400">
-      {/* Header */}
-      <StyledView className="flex-row self-start w-[100%] justify-between">
+    <StyledView className="flex-col flex-1 p-3 items-center">
+      <FlatList
+        data={tasks}
+        renderItem={({item}) => (
+          <StyledView className="flex-row self-start w-[100%] justify-between">
+            <Text>{`${item.title} - ${item.date}`}</Text>
+          </StyledView>
+        )}
+      />
+      <FAB
+        icon="plus"
+        style={styles.fab}
+        onPress={() => console.log('Pressed')}
+      />
+      {/*
+       <StyledView className="flex-row self-start w-[100%] justify-between">
         <StyledPressable
           android_ripple={{color: '#00000000'}}
           className="items-center text-white rounded-xl w-12 h-12 active:bg-[#80808060] dark:active:bg-[#dddddd60]">
@@ -51,13 +105,13 @@ function HomeScreen() {
         </StyledPressable>
       </StyledView>
 
-      {/* content */}
+      
       <StyledView className="flex-col gap-y-4 w-[100%] justify-evenly">
         <StyledText className="text-center text-4xl font-bold text-gray-600 dark:text-teal-300">
           Hoy
         </StyledText>
 
-        {/* aqui debe ir una lista scroll con todas las tareas del dia */}
+        
         <StyledPressable
           android_ripple={{color: '#fff'}}
           onPress={logoutGoogle}
@@ -139,7 +193,7 @@ function HomeScreen() {
         </StyledText>
       </StyledView>
 
-      {/* Footer */}
+
       <StyledView>
         <StyledPressable
           android_ripple={{color: '#fff'}}
@@ -149,12 +203,7 @@ function HomeScreen() {
             Universidad
           </StyledText>
         </StyledPressable>
-      </StyledView>
-      <FAB
-        icon="plus"
-        style={styles.fab}
-        onPress={() => console.log('Pressed')}
-      />
+      </StyledView> */}
     </StyledView>
   );
 }
