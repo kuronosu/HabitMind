@@ -1,11 +1,11 @@
 import {styled} from 'nativewind';
 import {
   Image,
-  Text,
-  View,
   Pressable,
-  TouchableOpacity,
   Switch,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {Caption, Drawer, Title} from 'react-native-paper';
 

@@ -1,11 +1,14 @@
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentComponentProps,
+} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {NoAuthRootStackParamList} from '..';
 import Article from '../screens/Article';
 import Feed from '../screens/Feed';
@@ -47,6 +50,11 @@ const MainNavigation = () => {
     return subscriber;
   }, [onAuthStateChanged]);
 
+  const drawerContent = useCallback(
+    (props: DrawerContentComponentProps) => <DrawerContent {...props} />,
+    [],
+  );
+
   if (loading) {
     return <LoadingScreen />;
   }
@@ -74,7 +82,7 @@ const MainNavigation = () => {
 
   return (
     <NavigationContainer>
-      <Drawer.Navigator drawerContent={DrawerContent}>
+      <Drawer.Navigator drawerContent={drawerContent}>
         <Drawer.Screen
           name="Home"
           component={HomeScreen}

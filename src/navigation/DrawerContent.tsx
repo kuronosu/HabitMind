@@ -7,6 +7,7 @@ import {
 import React from 'react';
 import {Avatar} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet} from 'react-native';
 import {logoutGoogle} from '../firebase/auth/google';
 import {StyledDrawerSection, StyledTitle, StyledView} from '../styled';
 
@@ -34,6 +35,7 @@ const SignOutIcon: DrawerItemIcon = ({color, size}) => (
 
 export default function DrawerContent(props: DrawerContentComponentProps) {
   const {displayName, email, photoURL} = auth().currentUser!;
+  const currentRoute = props.state.routeNames[props.state.index];
 
   return (
     <StyledView className="flex-1 w-full">
@@ -57,17 +59,24 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
             <DrawerItem
               icon={HomeIcon}
               label="Home"
+              focused={currentRoute === 'Home'}
               onPress={() => props.navigation.navigate('Home')}
             />
             <DrawerItem
+              labelStyle={styles.drawerItemDisabled}
+              focused={currentRoute === 'University'}
               icon={UniversityIcon}
               label="Universidad"
-              onPress={() => props.navigation.navigate('Profile')}
+              onPress={() => {}}
+              {...props}
             />
             <DrawerItem
               icon={WorkIcon}
+              focused={currentRoute === 'Work'}
+              labelStyle={styles.drawerItemDisabled}
               label="Trabajo"
-              onPress={() => props.navigation.navigate('Profile')}
+              onPress={() => {}}
+              {...props}
             />
           </StyledDrawerSection>
         </StyledView>
@@ -82,3 +91,9 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
     </StyledView>
   );
 }
+
+const styles = StyleSheet.create({
+  drawerItemDisabled: {
+    opacity: 0.5,
+  },
+});
