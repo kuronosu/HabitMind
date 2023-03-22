@@ -85,7 +85,7 @@ const MainNavigation = () => {
         <Drawer.Screen
           name="Home"
           options={{
-            title: 'Inicio',
+            title: 'HabitMind',
           }}
           component={HomeScreen}
         />
