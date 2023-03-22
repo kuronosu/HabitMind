@@ -20,56 +20,40 @@ export default function IntroScreen({navigation}: NoAuthScreenProps<'Intro'>) {
       {/* Content */}
       <StyledView className="flex-1 justify-around mt-2 ml-6 mr-6 -mb-2">
         {/* Division 1 */}
-        <StyledView 
-          className="flex-row justify-start pl-6 pr-9 h-28 bg-blue-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
-          
-          <StyledImage source={ejercicio} className="h-24 w-24 self-center p-10"/>
+        <StyledView className="flex-row justify-start pl-6 pr-9 h-28 bg-blue-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          <StyledImage
+            source={ejercicio}
+            className="h-24 w-24 self-center p-10"
+          />
 
-          <StyledText
-            className="text-black w-40 text-left self-center pl-8">
+          <StyledText className="text-black w-40 text-left self-center pl-8">
             HAZ EJERCICIO
           </StyledText>
-
         </StyledView>
 
         {/* Division 2 */}
-        <StyledView
-          className="flex-row justify-start pl-6 pr-9 h-28 bg-green-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
-          <StyledImage
-            source={comida}
-            className="h-24 w-24 self-center"
-          />
+        <StyledView className="flex-row justify-start pl-6 pr-9 h-28 bg-green-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          <StyledImage source={comida} className="h-24 w-24 self-center" />
 
-          <StyledText
-            className="text-negro-azabache w-40 text-left self-center pl-8">
+          <StyledText className="text-negro-azabache w-40 text-left self-center pl-8">
             COCINA ALGO RICO
           </StyledText>
         </StyledView>
 
         {/* Division 3 */}
-        <StyledView
-          className="flex-row justify-start pl-6 pr-9 h-28 bg-orange-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
-          <StyledImage
-            source={batido}
-            className="h-24 w-24 self-center"
-          />
+        <StyledView className="flex-row justify-start pl-6 pr-9 h-28 bg-orange-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          <StyledImage source={batido} className="h-24 w-24 self-center" />
 
-          <StyledText
-            className="text-negro-azabache self-center text-left w-40 pl-8 leading-5">
+          <StyledText className="text-negro-azabache self-center text-left w-40 pl-8 leading-5">
             PREPARA UN BATIDO NUTRITIVO
           </StyledText>
         </StyledView>
 
         {/* Division 4 */}
-        <StyledView
-          className="flex-row justify-start pl-6 pr-9 h-28 bg-pink-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
-          <StyledImage
-            source={musica}
-            className="h-24 w-24 self-center "
-          />
+        <StyledView className="flex-row justify-start pl-6 pr-9 h-28 bg-pink-400 rounded-tl-3xl rounded-br-3xl shadow-lg shadow-[#000]">
+          <StyledImage source={musica} className="h-24 w-24 self-center " />
 
-          <StyledText
-            className="text-negro-azabache w-40 text-left self-center pl-8 leading-5">
+          <StyledText className="text-negro-azabache w-40 text-left self-center pl-8 leading-5">
             PON MUSICA ALEGRE
           </StyledText>
         </StyledView>
@@ -77,7 +61,6 @@ export default function IntroScreen({navigation}: NoAuthScreenProps<'Intro'>) {
 
       {/* Footer */}
       <StyledView className="flex">
-
         <StyledPressable
           android_ripple={{color: '#00000000'}}
           onPress={() => {
@@ -88,7 +71,6 @@ export default function IntroScreen({navigation}: NoAuthScreenProps<'Intro'>) {
             SIGUIENTE
           </StyledText>
         </StyledPressable>
-
       </StyledView>
     </StyledView>
   );

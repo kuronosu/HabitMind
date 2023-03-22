@@ -1,13 +1,17 @@
+import 'react-native-gesture-handler';
 import {StyledComponent} from 'nativewind';
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import MainStack from './navigation';
+import {Provider as PaperProvider} from 'react-native-paper';
+import MainNavigation from './navigation';
 
 function App() {
   return (
-    <StyledComponent component={SafeAreaView} tw="flex-1">
-      <MainStack />
-    </StyledComponent>
+    <PaperProvider>
+      <StyledComponent component={SafeAreaView} tw="flex-1">
+        <MainNavigation />
+      </StyledComponent>
+    </PaperProvider>
   );
 }
 

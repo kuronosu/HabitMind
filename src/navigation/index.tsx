@@ -1,26 +1,29 @@
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
-import {AuthRootStackParamList, NoAuthRootStackParamList} from '..';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
+import React from 'react';
+import {NoAuthRootStackParamList} from '..';
+import Article from '../screens/Article';
+import Feed from '../screens/Feed';
 import HomeScreen from '../screens/home';
 import IntroScreen from '../screens/IntroScreen';
 import LoadingScreen from '../screens/LoadingScreen';
 import LoginScreen from '../screens/LoginScreen';
-import auth from '@react-native-firebase/auth';
+import DrawerContent from './DrawerContent';
 
-const Stack = createNativeStackNavigator<
-  AuthRootStackParamList & NoAuthRootStackParamList
->();
+const Stack = createNativeStackNavigator<NoAuthRootStackParamList>();
+
+const Drawer = createDrawerNavigator();
 
 const introOptions: NativeStackNavigationOptions = {
   animation: 'slide_from_right',
 };
 
-const MainStack = () => {
+const MainNavigation = () => {
   const [loading, setLoading] = React.useState(true);
   const [user, setUser] = React.useState<FirebaseAuthTypes.User | null>(null);
   // const setUserData = useUserStore(state => state.setUser);
@@ -47,41 +50,44 @@ const MainStack = () => {
   if (loading) {
     return <LoadingScreen />;
   }
+  if (user === null) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <Stack.Screen
+            name="Intro"
+            component={IntroScreen}
+            options={{
+              ...introOptions,
+              animationTypeForReplace: 'pop',
+            }}
+          />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          {/* <Stack.Screen name="Signup" component={SignupScreen} /> */}
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        {user === null ? (
-          <>
-            <Stack.Screen
-              name="Intro"
-              component={IntroScreen}
-              options={{
-                ...introOptions,
-                animationTypeForReplace: 'pop',
-              }}
-            />
-            <Stack.Screen name="Login" component={LoginScreen} />
-            {/* <Stack.Screen name="Signup" component={SignupScreen} /> */}
-          </>
-        ) : (
-          <>
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                headerLeft: () => null,
-                headerBackButtonMenuEnabled: false,
-              }}
-            />
-          </>
-        )}
-      </Stack.Navigator>
+      <Drawer.Navigator drawerContent={DrawerContent}>
+        <Drawer.Screen
+          name="Home"
+          component={HomeScreen}
+          // options={{
+          //   headerLeft: () => null,
+          //   // headerBackButtonMenuEnabled: false,
+          // }}
+        />
+        <Drawer.Screen name="Feed" component={Feed} />
+        <Drawer.Screen name="Article" component={Article} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
 
-export default MainStack;
+export default MainNavigation;

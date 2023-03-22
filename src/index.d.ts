@@ -9,16 +9,16 @@ export type NoAuthRootStackParamList = {
   Login: undefined;
 };
 
-export type AuthRootStackParamList = {
-  // todo - add more screens here
-  Home: undefined;
-};
+// export type AuthRootStackParamList = {
+//   // todo - add more screens here
+//   Home: undefined;
+// };
 
-export type AuthScreenNavigationProp<K extends keyof AuthRootStackParamList> =
-  NativeStackNavigationProp<AuthRootStackParamList, K>;
+// export type AuthScreenNavigationProp<K extends keyof AuthRootStackParamList> =
+//   NativeStackNavigationProp<AuthRootStackParamList, K>;
 
-export type AuthScreenProps<K extends keyof AuthRootStackParamList> =
-  NativeStackScreenProps<AuthRootStackParamList, K>;
+// export type AuthScreenProps<K extends keyof AuthRootStackParamList> =
+//   NativeStackScreenProps<AuthRootStackParamList, K>;
 
 export type NoAuthScreenNavigationProp<
   K extends keyof NoAuthRootStackParamList,

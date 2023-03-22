@@ -11,7 +11,7 @@ module.exports = {
         'pardo-oscuro': '#85586f',
         'melocoton-claro': '#dba39a',
         'gris-tormenta': '#65647c',
-        'lila': '#debace',
+        lila: '#debace',
         'marron-arcilla': '#8b7e74',
         'azul-uva': '#7f669d',
 
