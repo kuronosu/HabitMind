@@ -46,7 +46,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
                   uri: photoURL || 'https://picsum.photos/200',
                 }}
               />
-              <StyledTitle className="flex-1 mx-2 font-light leading-5">
+              <StyledTitle className="flex-1 mx-2 font-light text-slate-600 leading-5">
                 {displayName || email}
               </StyledTitle>
             </StyledView>

@@ -7,7 +7,7 @@ const google = require('./assets/google-login.png');
 
 export default function LoginScreen() {
   return (
-    <StyledView className="flex-1 flex-col justify-between pt-5 pb-8 bg-beige-lino">
+    <StyledView className="flex-1 flex-col justify-between pt-5 pb-16 bg-beige-lino">
       {/* Header */}
       <StyledView className="-mb-40">
         <StyledImage source={login} className="h-[60%] w-screen self-center" />

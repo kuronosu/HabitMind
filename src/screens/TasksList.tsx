@@ -15,7 +15,8 @@ type Props = {
 const TasksList = ({tasks}: Props) => (
   <FlatList
     data={tasks}
-    ListEmptyComponent={<Centered text="No hay tareas" />}
+    // <Centered text="No hay tareas" /> 
+    ListEmptyComponent={<StyledText className='text-gris-tormenta text-center text-2xl mt-4'>No hay tareas</StyledText>}
     renderItem={({item}) => (
       <StyledCard
         mode="elevated"
