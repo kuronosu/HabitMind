@@ -12,6 +12,7 @@ export type NoAuthRootStackParamList = {
 export type RootParamList = {
   Home: undefined;
   CreateTask: undefined;
+  GroupedTasks: {group: string};
 };
 
 export type RootNavigationProp = NavigationProp<RootParamList>;

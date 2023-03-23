@@ -11,6 +11,7 @@ import {
 import React, {useCallback} from 'react';
 import {NoAuthRootStackParamList, RootParamList} from '..';
 import CreateTaskScreen from '../screens/CreateTask';
+import GroupedTasks from '../screens/GroupedTasks';
 import HomeScreen from '../screens/home';
 import IntroScreen from '../screens/IntroScreen';
 import LoadingScreen from '../screens/LoadingScreen';
@@ -95,6 +96,13 @@ const MainNavigation = () => {
             title: 'Crear tarea',
           }}
           component={CreateTaskScreen}
+        />
+        <Drawer.Screen
+          name="GroupedTasks"
+          options={{
+            title: 'Tareas agrupadas',
+          }}
+          component={GroupedTasks}
         />
       </Drawer.Navigator>
     </NavigationContainer>

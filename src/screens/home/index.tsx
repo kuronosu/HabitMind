@@ -1,14 +1,11 @@
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
-import {StyledComponent} from 'nativewind';
 import React, {useEffect} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
-import {Badge, Card, FAB} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
+import {FAB} from 'react-native-paper';
 import {RootNavigationProp, Task} from '../..';
-import {tasksCollection, toogleTask} from '../../firebase/firestore';
-import {groups} from '../../groups';
-
-import {StyledCard, StyledText} from '../../styled';
+import {tasksCollection} from '../../firebase/firestore';
+import TasksList from '../TasksList';
 
 function HomeScreen() {
   const user = auth().currentUser!;
@@ -36,31 +33,7 @@ function HomeScreen() {
 
   return (
     <>
-      <FlatList
-        data={tasks}
-        renderItem={({item}) => (
-          <StyledCard
-            mode="elevated"
-            className="m-4"
-            onLongPress={() => toogleTask(item).catch(console.error)}>
-            <Card.Title title={item.title} subtitle={groups[item.group]} />
-            <Card.Content>
-              <StyledText>{item.description}</StyledText>
-              <StyledText>{item.date.toLocaleString('es')}</StyledText>
-            </Card.Content>
-            <Card.Actions>
-              <StyledComponent
-                className={item.completed ? 'bg-lime-600' : 'bg-rose-900'}
-                component={Badge}
-                size={14}
-              />
-              <StyledText>
-                {item.completed ? 'Realizada' : 'Pendiente'}
-              </StyledText>
-            </Card.Actions>
-          </StyledCard>
-        )}
-      />
+      <TasksList tasks={tasks} />
       <FAB
         icon="plus"
         style={styles.fab}

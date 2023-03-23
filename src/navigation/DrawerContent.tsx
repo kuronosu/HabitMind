@@ -7,8 +7,8 @@ import {
 import React from 'react';
 import {Avatar} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {StyleSheet} from 'react-native';
 import {logoutGoogle} from '../firebase/auth/google';
+import {groups} from '../groups';
 import {StyledDrawerSection, StyledTitle, StyledView} from '../styled';
 
 type DrawerItemIcon = (props: {
@@ -21,21 +21,18 @@ const HomeIcon: DrawerItemIcon = ({color, size}) => (
   <Icon name="home" color={color} size={size} />
 );
 
-const UniversityIcon: DrawerItemIcon = ({color, size}) => (
-  <Icon name="school" color={color} size={size} />
-);
-
-const WorkIcon: DrawerItemIcon = ({color, size}) => (
-  <Icon name="briefcase" color={color} size={size} />
-);
-
 const SignOutIcon: DrawerItemIcon = ({color, size}) => (
   <Icon name="logout" color={color} size={size} />
 );
+const _Icon: (name: string) => DrawerItemIcon =
+  name =>
+  ({color, size}) =>
+    <Icon name={name} color={color} size={size} />;
 
 export default function DrawerContent(props: DrawerContentComponentProps) {
   const {displayName, email, photoURL} = auth().currentUser!;
   const currentRoute = props.state.routeNames[props.state.index];
+  // const [groupsArray] = React.useState(defaultGroupsArray);
 
   return (
     <StyledView className="flex-1 w-full">
@@ -62,22 +59,21 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
               focused={currentRoute === 'Home'}
               onPress={() => props.navigation.navigate('Home')}
             />
-            <DrawerItem
-              labelStyle={styles.drawerItemDisabled}
-              focused={currentRoute === 'University'}
-              icon={UniversityIcon}
-              label="Universidad"
-              onPress={() => {}}
-              {...props}
-            />
-            <DrawerItem
-              icon={WorkIcon}
-              focused={currentRoute === 'Work'}
-              labelStyle={styles.drawerItemDisabled}
-              label="Trabajo"
-              onPress={() => {}}
-              {...props}
-            />
+            {Object.keys(groups).map(key => {
+              const group = groups[key];
+              return (
+                <DrawerItem
+                  key={key}
+                  // focused={currentRoute === group.name}
+                  icon={_Icon(group.icon)}
+                  label={group.name}
+                  onPress={() =>
+                    props.navigation.navigate('GroupedTasks', {group: key})
+                  }
+                  {...props}
+                />
+              );
+            })}
           </StyledDrawerSection>
         </StyledView>
       </DrawerContentScrollView>
@@ -91,9 +87,3 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
     </StyledView>
   );
 }
-
-const styles = StyleSheet.create({
-  drawerItemDisabled: {
-    opacity: 0.5,
-  },
-});
