@@ -35,6 +35,7 @@ export type NoAuthScreenProps<K extends keyof NoAuthRootStackParamList> =
   NativeStackScreenProps<NoAuthRootStackParamList, K>;
 
 export type Task = {
+  id?: string;
   title: string;
   description: string;
   date: Date;

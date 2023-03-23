@@ -1,13 +1,13 @@
 import {styled} from 'nativewind';
+import {Image, Pressable, Switch, TouchableOpacity, View} from 'react-native';
 import {
-  Image,
-  Pressable,
-  Switch,
+  Caption,
+  Drawer,
+  Title,
+  TextInput,
   Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {Caption, Drawer, Title, TextInput} from 'react-native-paper';
+  Card,
+} from 'react-native-paper';
 import DropDown from 'react-native-paper-dropdown';
 
 export const StyledText = styled(Text);
@@ -21,3 +21,4 @@ export const StyledCaption = styled(Caption);
 export const StyledDrawerSection = styled(Drawer.Section);
 export const StyledTextInput = styled(TextInput);
 export const StyledDropDown = styled(DropDown);
+export const StyledCard = styled(Card);

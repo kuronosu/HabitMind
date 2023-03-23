@@ -11,3 +11,12 @@ export const createTask = async (task: Task) => {
   }
   return await tasksCollection.add({...task, user: user.uid});
 };
+
+export const toogleTask = async (task: Task) => {
+  if (!task.id) {
+    throw new Error('Task id not defined');
+  }
+  return await tasksCollection
+    .doc(task.id)
+    .update({completed: !task.completed});
+};

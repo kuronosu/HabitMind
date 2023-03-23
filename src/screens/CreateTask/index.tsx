@@ -10,35 +10,20 @@ import {
 import {RootNavigationProp} from '../..';
 
 import {createTask} from '../../firebase/firestore';
+import {groupsArray} from '../../groups';
 import {StyledDropDown, StyledTextInput, StyledView} from '../../styled';
 
 registerTranslation('es', es);
-// import {type Task} from '../../';
-
-const groups = [
-  {label: 'Personal', value: 'personal'},
-  {label: 'Universidad', value: 'university'},
-  {label: 'Trabajo', value: 'work'},
-  {label: 'Otros', value: 'other'},
-];
 
 export default function CreateTaskScreen() {
-  // const [task, setTask] = React.useState<Task>({
-  //   title: '',
-  //   description: '',
-  //   date: new Date(),
-  //   completed: false,
-  //   group: 'work',
-  //   user: '',
-  // });
+  const navigation = useNavigation<RootNavigationProp>();
   const [title, setTitle] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [showDropDown, setShowDropDown] = React.useState(false);
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const [openDate, setOpenDate] = React.useState(false);
   const [openTime, setOpenTime] = React.useState(false);
-  const [group, setGroup] = React.useState('personal');
-  const navigation = useNavigation<RootNavigationProp>();
+  const [group, setGroup] = React.useState(groupsArray[0].value);
   const [loading, setLoading] = React.useState(false);
 
   const clearAndGoBack = () => {
@@ -49,6 +34,7 @@ export default function CreateTaskScreen() {
     setOpenDate(false);
     setOpenTime(false);
     setGroup('personal');
+    setLoading(false);
     if (navigation.canGoBack()) {
       navigation.goBack();
     } else {
@@ -63,10 +49,13 @@ export default function CreateTaskScreen() {
         <StyledDropDown
           label="Grupo"
           value={group}
-          list={groups}
+          list={groupsArray}
           mode="outlined"
           className="mb-4"
-          setValue={setGroup}
+          setValue={(value: string) => {
+            console.log('value', value);
+            setGroup(value);
+          }}
           visible={showDropDown}
           onDismiss={() => setShowDropDown(false)}
           showDropDown={() => setShowDropDown(true)}
