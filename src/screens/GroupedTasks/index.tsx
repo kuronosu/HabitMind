@@ -27,7 +27,12 @@ const _List = ({group, userUID}: {group: string; userUID: string}) => {
       }, console.error);
     return () => unsubscribe();
   }, [group, userUID]);
-  return <TasksList tasks={tasks} emptyText={`No hay tareas en ${group}`} />;
+  return (
+    <TasksList
+      tasks={tasks}
+      emptyText={`No hay tareas en ${groups[group].name}`}
+    />
+  );
 };
 
 export default function GroupedTasks({
